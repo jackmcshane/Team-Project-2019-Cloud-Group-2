@@ -1,38 +1,25 @@
 package team;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import java.awt.CardLayout;
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
-import javax.swing.JTable;
-import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
-import java.awt.Component;
-import javax.swing.Box;
-import java.awt.Color;
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextField;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import javax.swing.border.LineBorder;
+public class HeadOfDept extends JFrame {
 
-public class HoD extends JFrame {
-
-	private JFrame frame;
-	private JTextField txtRoomNumber;
+	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField txtRoomNumber_2;
+	private JComboBox Current_time;
 
 	/**
 	 * Launch the application.
@@ -41,7 +28,7 @@ public class HoD extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HoD frame = new HoD();
+					HeadOfDept frame = new HeadOfDept();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,153 +38,120 @@ public class HoD extends JFrame {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
-	public HoD() {
-		initialize();
+	public HeadOfDept() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 282, 482);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JPanel CurrentDetails_Panel = new JPanel();
+		CurrentDetails_Panel.setLayout(null);
+		CurrentDetails_Panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		CurrentDetails_Panel.setBounds(10, 30, 246, 137);
+		contentPane.add(CurrentDetails_Panel);
+
+		JComboBox Current_Day = new JComboBox();
+		Current_Day.setModel(new DefaultComboBoxModel(new String[] {"Monday", "Tuesday", "Wedneday", "Thursday", "Friday"}));
+		Current_Day.setBounds(10, 44, 231, 20);
+		CurrentDetails_Panel.add(Current_Day);
+
+		textField = new JTextField();
+		textField.setText("Room Number");
+		textField.setForeground(Color.GRAY);
+		textField.setColumns(10);
+		textField.setBounds(10, 106, 231, 20);
+		CurrentDetails_Panel.add(textField);
+
+		JComboBox Current_week = new JComboBox();
+		Current_week.setModel(new DefaultComboBoxModel(new String[] {"Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10", "Week 11", "Week 12"}));
+		Current_week.setBounds(10, 11, 231, 20);
+		CurrentDetails_Panel.add(Current_week);
+
+		Current_time = new JComboBox(new Object[]{});
+		Current_time.setModel(new DefaultComboBoxModel(new String[] {"0930-1030", "1030-1130", "1130-1230", "1230-1330", "1330-1430", "1430-1530", "1530-1630", "1630-1730"}));
+		Current_time.setBounds(10, 75, 231, 20);
+		CurrentDetails_Panel.add(Current_time);
+
+		JLabel lblCurrentRoom = new JLabel("Current Room");
+		lblCurrentRoom.setBounds(96, 5, 88, 14);
+		contentPane.add(lblCurrentRoom);
+
+		JPanel SwapCap_Panel = new JPanel();
+		SwapCap_Panel.setLayout(null);
+		SwapCap_Panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		SwapCap_Panel.setBounds(10, 209, 113, 137);
+		contentPane.add(SwapCap_Panel);
+
+		JRadioButton Cap16_Radio = new JRadioButton("16");
+		Cap16_Radio.setBounds(35, 32, 57, 23);
+		SwapCap_Panel.add(Cap16_Radio);
+
+		JRadioButton Cap32_Radio = new JRadioButton("32");
+		Cap32_Radio.setBounds(35, 58, 57, 23);
+		SwapCap_Panel.add(Cap32_Radio);
+
+		JRadioButton Cap64_Radio = new JRadioButton("64\r\n");
+		Cap64_Radio.setBounds(35, 84, 57, 23);
+		SwapCap_Panel.add(Cap64_Radio);
+
+		JLabel label = new JLabel("Room Capacity");
+		label.setBounds(18, 11, 85, 14);
+		SwapCap_Panel.add(label);
+
+		JPanel SwapDetails_Panel = new JPanel();
+		SwapDetails_Panel.setLayout(null);
+		SwapDetails_Panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		SwapDetails_Panel.setBounds(133, 209, 123, 137);
+		contentPane.add(SwapDetails_Panel);
+
+		JComboBox swap_roomtype = new JComboBox(new Object[]{});
+		swap_roomtype.setModel(new DefaultComboBoxModel(new String[] {"Lab", "Computer Room", "Class room", "Lecture hall", "Engineering Suite"}));
+		swap_roomtype.setBounds(15, 42, 91, 20);
+		SwapDetails_Panel.add(swap_roomtype);
+
+		JComboBox swap_day = new JComboBox(new Object[]{});
+		swap_day.setModel(new DefaultComboBoxModel(new String[] {"Monday", "Tuesday", "Wedneday", "Thursday", "Friday"}));
+		swap_day.setBounds(15, 73, 91, 20);
+		SwapDetails_Panel.add(swap_day);
+
+		JComboBox swap_time = new JComboBox(new Object[]{});
+		swap_time.setModel(new DefaultComboBoxModel(new String[] {"0930-1030", "1030-1130", "1130-1230", "1230-1330", "1330-1430", "1430-1530", "1530-1630", "1630-1730"}));
+		swap_time.setBounds(15, 104, 91, 20);
+		SwapDetails_Panel.add(swap_time);
+
+		JComboBox Swap_week = new JComboBox();
+		Swap_week.setModel(new DefaultComboBoxModel(new String[] {"Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10", "Week 11", "Week 12"}));
+		Swap_week.setBounds(15, 11, 91, 20);
+		SwapDetails_Panel.add(Swap_week);
+
+		JLabel lblSwap = new JLabel("Swap Room Details");
+		lblSwap.setBounds(86, 178, 146, 27);
+		contentPane.add(lblSwap);
+
+		JPanel BtnPanel = new JPanel();
+		BtnPanel.setBounds(10, 357, 246, 75);
+		contentPane.add(BtnPanel);
+		BtnPanel.setLayout(null);
+
+		JButton SearchBtn = new JButton("Search");
+		SearchBtn.setBounds(10, 11, 103, 23);
+		BtnPanel.add(SearchBtn);
+
+		JButton SwapBtn = new JButton("Swap Room");
+		SwapBtn.setBounds(10, 45, 103, 23);
+		BtnPanel.add(SwapBtn);
+
+		JComboBox availableRooms = new JComboBox();
+		availableRooms.setModel(new DefaultComboBoxModel(new String[] {"Available Rooms"}));
+		availableRooms.setBounds(123, 12, 113, 20);
+		BtnPanel.add(availableRooms);
+
+		JButton LogOutBtn = new JButton("Log Out");
+		LogOutBtn.setBounds(123, 43, 113, 23);
+		BtnPanel.add(LogOutBtn);
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setForeground(new Color(240, 230, 140));
-		frame.getContentPane().setForeground(new Color(240, 230, 140));
-		frame.setBounds(100, 100, 300, 471);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		
-		///////////////////////////////////////////////////////////////
-		//  Current Booking Details									//
-		/////////////////////////////////////////////////////////////
-		
-		JLabel TitleLBL = new JLabel("Current Booking Details");
-		TitleLBL.setBounds(87, 9, 146, 14);
-		frame.getContentPane().add(TitleLBL);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBounds(20, 34, 246, 137);
-		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		
-		JComboBox CurDay = new JComboBox();
-		CurDay.setBounds(10, 44, 231, 20);
-		CurDay.setModel(new DefaultComboBoxModel(new String[] {"Monday", "Tuesday", "Wedneday", "Thursday", "Friday"}));
-		panel_1.add(CurDay);
-		
-		JComboBox CurTime = new JComboBox(new String[]{"0930-1030", "1030-1130", "1130-1230", "1230-1330", "1330-1430", "1430-1530", "1530-1630", "1630-1730",});
-		CurTime.setBounds(10, 75, 231, 20);
-		panel_1.add(CurTime);
-		
-		txtRoomNumber_2 = new JTextField();
-		txtRoomNumber_2.setBounds(10, 106, 231, 20);
-		panel_1.add(txtRoomNumber_2);
-		txtRoomNumber_2.setForeground(Color.GRAY);
-		txtRoomNumber_2.setText("Room Number");
-		txtRoomNumber_2.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				txtRoomNumber_2.setText("");
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				txtRoomNumber_2.setText("Room Number");
-			}
-		});
-		txtRoomNumber_2.setColumns(10);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10", "Week 11", "Week 12"}));
-		comboBox_1.setBounds(10, 11, 231, 20);
-		panel_1.add(comboBox_1);
-		
-		
-		///////////////////////////////////////////////////////////////
-		//  Swap Booking											//
-		/////////////////////////////////////////////////////////////
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_2.setLayout(null);
-		panel_2.setBounds(20, 219, 113, 137);
-		frame.getContentPane().add(panel_2);
-		
-		JRadioButton swpSmlCap = new JRadioButton("16");
-		swpSmlCap.setBounds(35, 32, 57, 23);
-		panel_2.add(swpSmlCap);
-		
-		JRadioButton mdmSwapCap = new JRadioButton("32");
-		mdmSwapCap.setBounds(35, 58, 57, 23);
-		panel_2.add(mdmSwapCap);
-		
-		JRadioButton lrgSwapCap = new JRadioButton("64\r\n");
-		lrgSwapCap.setBounds(35, 84, 57, 23);
-		panel_2.add(lrgSwapCap);
-		
-		JLabel lblNewLabel = new JLabel("Room Capacity");
-		lblNewLabel.setBounds(21, 11, 82, 14);
-		panel_2.add(lblNewLabel);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3.setLayout(null);
-		panel_3.setBounds(143, 219, 123, 137);
-		frame.getContentPane().add(panel_3);
-		
-		JComboBox SwapClass = new JComboBox((new String[] {"Lab", "Computer Room", "Class room", "Lecture hall", "Engineering Suite"}));
-		SwapClass.setBounds(15, 42, 91, 20);
-		panel_3.add(SwapClass);
-		
-		JComboBox SwapDay = new JComboBox((new String[] {"Monday", "Tuesday", "Wedneday", "Thursday", "Friday"}));
-		SwapDay.setBounds(15, 73, 91, 20);
-		panel_3.add(SwapDay);
-		
-		JComboBox SwapTime = new JComboBox(new String[]{"0930-1030", "1030-1130", "1130-1230", "1230-1330", "1330-1430", "1430-1530", "1530-1630", "1630-1730",});
-		SwapTime.setBounds(15, 104, 91, 20);
-		panel_3.add(SwapTime);
-		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10", "Week 11", "Week 12"}));
-		comboBox_2.setBounds(15, 11, 91, 20);
-		panel_3.add(comboBox_2);
-		
-		JLabel lblSwapRoomDetails = new JLabel("Swap Room Details");
-		lblSwapRoomDetails.setBounds(97, 181, 146, 27);
-		frame.getContentPane().add(lblSwapRoomDetails);
-		
-		JButton btnSwapRoom = new JButton("Swap Room");
-		btnSwapRoom.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) 
-			{		
-
-				
-			}
-		});
-		btnSwapRoom.setBounds(20, 398, 113, 23);
-		frame.getContentPane().add(btnSwapRoom);
-		
-		JButton btnLogOut = new JButton("Log Out");
-		btnLogOut.setBounds(143, 398, 123, 23);
-		frame.getContentPane().add(btnLogOut);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Available Rooms", "1", "2", "3", "4", "5"}));
-		comboBox.setBounds(143, 367, 123, 20);
-		frame.getContentPane().add(comboBox);
-		
-		JButton btnSearch = new JButton("Search");
-		btnSearch.setBounds(20, 364, 113, 23);
-		frame.getContentPane().add(btnSearch);
-		
-
-
-		
-		//frame.add(new JLabel(new ImageIcon("X:\\Sem 6\\Team Project\\GUI & SQL\\download.jpg")));
-	}
-
-	
-	
 }
