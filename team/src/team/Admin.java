@@ -27,11 +27,13 @@ public class Admin extends JFrame {
 	private JPanel contentPane;
 	private JTextField RoomField;
 	private JTextField amdRoomNo;
-
+	ClassroomDB database = new ClassroomDB();
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -169,6 +171,16 @@ public class Admin extends JFrame {
 		classDetails.add(RoomField);
 		
 		JButton SubmitBtn = new JButton("Submit");
+		SubmitBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+
+				if(roomType.isInteger())
+				database.addRoom(newRoom,roomType, capacity);
+				//else
+					//dialog box
+			}
+		});
 		SubmitBtn.setBounds(10, 140, 314, 23);
 		registerDetails.add(SubmitBtn);
 		
