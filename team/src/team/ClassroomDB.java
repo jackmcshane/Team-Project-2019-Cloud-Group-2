@@ -406,4 +406,36 @@ public class ClassroomDB implements JDBCDB
 	   }
 	return 0;  
    }
+
+	public int  amendRoom(int newRoom, String roomType, int capacity)
+	{
+		int oldNo=0;
+		try{
+			createConnection("jdbc:mysql://localhost/");
+			stmt = conn.createStatement();
+			stmt.executeUpdate("USE timetable;");
+			ResultSet RS = stmt.executeQuery("Select roomFK FROM slot;");
+
+			while(RS.next()){
+
+				oldNo=RS.getInt(1);
+				//System.out.print("room no is " +oldNo);
+				break;
+
+			}
+
+			insert("INSERT INTO rooms(roomNo, capacity, roomType) VALUES("+newRoom+","+capacity+","+roomType+");");
+			insert("INSERT INTO slot( roomFK, startTime, endTime, day) SELECT "+newRoom+", startTime, endTime, day FROM slot WHERE roomFK = "+oldNo+";");
+
+
+			closeConnection();
+
+		}
+
+		catch(SQLException e)
+		{
+			System.out.print(e.getMessage());
+		}
+		return 0;
+	}
 } 

@@ -176,7 +176,7 @@ public class Admin extends JFrame {
 			{
 
 				//if(roomType.isInteger())
-				//database.addRoom(newRoom,roomType, capacity);
+				database.addRoom(newRoom,roomType, capacity);
 				//else
 					//dialog box
 			}
